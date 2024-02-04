@@ -1,66 +1,82 @@
-"use client";
-import { useState } from "react";
-
-export default function Page() {
-  const [noCount, setNoCount] = useState(0);
-  const [yesPressed, setYesPressed] = useState(false);
-  const yesButtonSize = noCount * 20 + 16;
-
-  const handleNoClick = () => {
-    setNoCount(noCount + 1);
-  };
-
-  const getNoButtonText = () => {
-    const phrases = [
-      "No",
-      "Are you sure?",
-      "Really sure?",
-      "Think again!",
-      "Last chance!",
-      "Surely not?",
-      "You might regret this!",
-      "Give it another thought!",
-      "Are you absolutely certain?",
-      "This could be a mistake!",
-      "Have a heart!",
-      "Don't be so cold!",
-      "Change of heart?",
-      "Wouldn't you reconsider?",
-      "Is that your final answer?",
-      "You're breaking my heart ;(",
-    ];
-
-    return phrases[Math.min(noCount, phrases.length - 1)];
-  };
-
-  return (
-    <div className="flex flex-col items-center justify-center h-screen -mt-16">
-      {yesPressed ? (
-        <>
-        <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" />
-        <div className="text-4xl font-bold my-4">Ok yay!!!</div>
-        </>
-      ) : (
-        <>
-          <img className="h-[200px]" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" />
-          <h1 className="text-4xl my-4">Will you be my Valentine?</h1>
-          <div>
-            <button
-              className={`bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4`}
-              style={{ fontSize: yesButtonSize }}
-              onClick={() => setYesPressed(true)}
-            >
-              Yes
-            </button>
-            <button
-              onClick={handleNoClick}
-              className=" bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            >
-              {noCount === 0 ? "No" : getNoButtonText()}
-            </button>
-          </div>
-        </>
-      )}
-    </div>
-  );
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>  
+  <title>Happy Valentine's Day Max!</title>
+<link rel="icon" type="image/jpg" href="favicon.jpg">
+<style>
+/* HELLO MAX! THIS IS MY CSS! */
+body {
+	background-image: url('tandem_grey.png');
 }
+body::before {
+	content: url('tandem_grey.png') url('broken.png') url('clock.png') url('colors.png')  url('theCertificate.png') url('thePerks.png');
+	display: none;
+}
+.certificate {
+	background: #fff;
+	background-image: url('theCertificate.png');
+	box-shadow: 0 0 5px #888;
+}
+.benefits {
+	background: #fff;
+	background-image: url('thePerks.png');
+	box-shadow: 0 0 5px #888;
+}
+.no {
+	background-image: url('broken.png');
+}
+.yes {
+	background-image: url('colors.png');
+}
+.maybe {
+	background-image: url('clock.png');
+}
+#image {
+	height: 517px;
+	width: 780px;
+	margin: 50px auto;
+}
+</style>
+  
+</head>
+<body>
+	<script type="text/javascript">
+/* ZOMG. FUNCTION! */
+/* I ALSO LEARNED HOW TO DO A LOT OF THIS BY CHANGING .CSS INSTEAD OF ADDING/REMOVING CLASSES, WHICH I LEARNED IS BETTER. I ALSO LEARNED THAT I SHOULD MAKE VARS FOR BODY AND IMAGE SINCE I'M USING THEM MORE THAN ONCE! */
+	var beardedBoo = function() {
+		var body = $('body'),
+		    image = $("#image");
+		body.removeClass("no").removeClass("maybe")
+		image.removeClass("benefits").removeClass("certificate")
+		var answer = prompt("Will you be my valentine? Yes, No, Maybe?").toLowerCase()
+/* .toLowerCase IS BEST PRACTICE! IT'S ALSO OK IF YOU TYPE THE FIRST LETTER INSTEAD OF THE WORD! */
+		if (answer == "yes" || answer == 'y') {
+			body.addClass("yes")
+			image.addClass("certificate")
+		} else if (answer == "maybe" || answer == 'm') {
+			body.addClass("maybe")
+/* I WANTED THE BG TO CHANGE BEFORE THE ALERT AND THE IMAGE AFTER THE PROMPT AND THE NEXT PROMPT AFTER THAT! I LEARNED THAT IF ALERT AD IMAGE ARE NOT IN THE setTimeout TOGETHER, IT DOES THEM AT THE SAME TIME. */
+			setTimeout(beardedBoo, 6000)
+			setTimeout(function() {
+				alert("Perhaps you are not aware of the many benefits")
+				image.addClass("benefits")
+			}, 200)
+/* HEY!!! */
+		} else {
+			body.addClass("no")
+			setTimeout(function() {
+				alert("Say it isn't so. Please try again.")
+				beardedBoo()
+			}, 200)
+		}
+	}
+    setTimeout(beardedBoo, 300)
+/* ALL THESE ALERTS/PROMPTS COULD GET ANNOYING, IT'S BEST TO JUST BE MY VALENTINE */
+	</script>
+
+<div id="image"></div>
+ 
+</body>
+</html>
